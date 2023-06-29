@@ -18,7 +18,7 @@ export default function LoginPage(){
         if(response.ok){
             setRedirect(true);
         }else {
-            alert('Wrong credentials')
+            alert('Wrong Password')
         }
     }
 

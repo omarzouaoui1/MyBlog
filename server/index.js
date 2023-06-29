@@ -3,9 +3,11 @@ const cors = require("cors");
 
 const app  = express();
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 app.use(cors({credentials: true, origin:'http://localhost:3000'}));
 app.use(express.json());
+app.use(cookieParser());
 
 
 const bcrypt = require('bcryptjs');
@@ -62,6 +64,14 @@ app.post('/login', async (req, res) => {
   } else {
     res.status(400).json('wrong password')
   }
+})
+
+app.get('/profile', (req, res) => {
+  const {token} = req.cookies;
+  jwt.verify(token, secret, {},(err, info) => {
+    if(err) throw err;
+    res.json(info);
+  });
 })
 
 const port = 4000;
