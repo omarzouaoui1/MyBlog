@@ -66,13 +66,20 @@ app.post('/login', async (req, res) => {
   }
 })
 
+//checking if logged in
 app.get('/profile', (req, res) => {
   const {token} = req.cookies;
   jwt.verify(token, secret, {},(err, info) => {
     if(err) throw err;
     res.json(info);
   });
+});
+
+//Logout
+app.post('/logout', (req, res) => {
+  res.cookie('token', '').json('ok');
 })
+
 
 const port = 4000;
 
