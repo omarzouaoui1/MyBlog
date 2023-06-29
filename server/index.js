@@ -16,3 +16,5 @@ const port = 4000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
+//password mongodb : raqiHxlTr56AkLlo
+//mongodb+srv://omarzouaoui100:raqiHxlTr56AkLlo@cluster0.ofzbzfd.mongodb.net/
