@@ -1,17 +1,20 @@
-export default function RegisterPage(){
-    const [username, setUsername] = setState('');
-    const [password, setPassword] = setState('');
+import React, { useState } from 'react';
 
-    function register(ev){
+export default function RegisterPage(){
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    async function register(ev){
         ev.preventDefault();
-        fetch('http://localhost:4000', {
+        await fetch('http://localhost:4000/register', {
             method: 'POST',
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username, password}),
+            headers: {'Content-Type':'application/json'},
         })
     }
 
     return(
-        <form action=" " className="register" onSubmit={}>
+        <form action=" " className="register" onSubmit={register}>
             <h1>Register</h1>
             <input type="text" 
             placeholder="username" 
