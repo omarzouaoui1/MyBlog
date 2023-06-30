@@ -21,7 +21,7 @@ const secret = 'n5zrfzrfzrf5abiokk75p2lkhjrd';
 
 
 //mongoDB Connection
-mongoose.connect('mongodb+srv://omarzouaoui100:raqiHxlTr56AkLlo@cluster0.ofzbzfd.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://omarzouaoui100:raqiHxlTr56AkLlo@cluster0.ofzbzfd.mongodb.net/", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
   })
