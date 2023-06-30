@@ -17,6 +17,7 @@ const bcrypt = require('bcryptjs');
 
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const Post = require('./models/Post');
 
 
 const saltRounds = bcrypt.genSaltSync(10);
@@ -87,15 +88,22 @@ app.post('/logout', (req, res) => {
 })
 
 //Create post
-app.post('/post', uploadMiddleware.single('file'), (req, res) => {
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   const {originalname, path} = req.file;
   const parts = originalname.split('.');
   const ext = parts[parts.length - 1];
   const newPath = path + '.' + ext;
   fs.renameSync(path, newPath);
-
   
-  res.json({ext});
+  const {title, summary, content} = req.body;
+  const postDoc = await Post.create({
+    title,
+    summary,
+    content,
+    cover: newPath,
+  });
+
+  res.json(postDoc);
 });
 
 const port = 4000;
