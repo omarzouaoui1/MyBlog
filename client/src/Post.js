@@ -6,7 +6,7 @@ export default function Post({title, summary, cover, content, createdAt, author}
         <div className='post'>
 
         <div className='image'>
-        <img src={cover}></img>
+        <img src={'http://localhost:4000/'+cover}></img>
         </div>
         
         <div className='texts'>

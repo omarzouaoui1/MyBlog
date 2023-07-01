@@ -10,6 +10,7 @@ const fs = require('fs');
 app.use(cors({credentials: true, origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
@@ -117,6 +118,7 @@ app.get('/post', async (req, res) => {
     await Post.find()
     .populate('author', ['username'])
     .sort({createdAt: -1})
+    .limit(20)
   );
 })
 
