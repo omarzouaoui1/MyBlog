@@ -113,8 +113,11 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 //Get posts 
 app.get('/post', async (req, res) => {
-  const posts = await Post.find().populate('author', ['username']);
-  res.json(posts);
+  res.json(
+    await Post.find()
+    .populate('author', ['username'])
+    .sort({createdAt: -1})
+  );
 })
 
 
